@@ -45,10 +45,10 @@ def Frontend():
      <div style = "margin-top: 10%">
      <h1>Anmeldung</h1>
      <p>Wenn Sie Interesse an unserem Produkt haben und mit uns in Kontakt treten wollen,<br>
-       können Sie sich hier anmelden, indem Sie ihre eMail-Adresse hinterlassen. </p> 
+       können Sie sich hier anmelden, indem Sie ihre E-Mail-Adresse hinterlassen. </p> 
        <p> Es haben sich bisher ''' + str(i) + ''' Personen bei uns angemeldet. </p> <br>
         <form action = "https://fstring-anmeldung.azurewebsites.net", method = "POST">
-        <label for="email">eMail-Adresse:</label>
+        <label for="email">E-Mail-Adresse:</label>
         <input type="text" name="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br><br>
         <input type="submit" value="Anmelden">
         </form>
