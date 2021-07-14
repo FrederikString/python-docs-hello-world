@@ -50,12 +50,15 @@ def Frontend():
     </body>
 </html>'''
 
+"""Admin-Zugriff"""
 @app.route("/registrations", methods=['GET'])
 def AlleAnmeldungen(): 
     conn = sqlite3.connect('Anmeldungen.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM Anmeldungen')
     rows = cursor.fetchall()
+    conn.commit() 
+    conn.close()
     return str(rows) 
 
 
