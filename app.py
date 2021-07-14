@@ -43,7 +43,7 @@ def Frontend():
        <p> Es haben sich bisher ''' + str(i) + ''' Personen bei uns angemeldet. </p> <br>
         <form action = "https://anmeldung.azurewebsites.net", method = "POST">
         <label for="email">eMail-Adresse:</label>
-        <input type="text" name="email"><br><br>
+        <input type="text" name="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br><br>
         <input type="submit" value="Anmelden">
         </form>
      </div>
