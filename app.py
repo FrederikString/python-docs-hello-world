@@ -1,5 +1,7 @@
 from flask import Flask
 import sqlite3
+from flask import request
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -13,7 +15,7 @@ def Frontend():
      <h1>Anmeldung</h1>
      <p>Wenn Sie Interesse an unserem Produkt haben und mit uns in Kontakt treten wollen,<br>
        können Sie sich hier anmelden, indem Sie ihre eMail-Adresse hinterlassen. </p> 
-       <p> Es haben sich bisher Y Personen bei uns angemeldet. </p> <br>
+       <p> Es haben sich bisher z Personen bei uns angemeldet. </p> <br>
         <form action = "http://127.0.0.1:5000/Anmeldung", method = "POST">
         <label for="email">eMail-Adresse:</label>
         <input type="text" name="email"><br><br>
