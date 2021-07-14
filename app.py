@@ -49,3 +49,13 @@ def Frontend():
      </div>
     </body>
 </html>'''
+
+@app.route("/registrations", methods=['GET'])
+def AlleAnmeldungen(): 
+    conn = sqlite3.connect('Anmeldungen.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Anmeldungen')
+    rows = cursor.fetchall()
+    return str(rows) 
+
+app.run()
