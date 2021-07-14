@@ -9,6 +9,11 @@ app = Flask(__name__)
    diese nicht schon vorhanden sind, und gibt die Anzahl der DB-Einträge zurück"""
 
 def Anmeldung(): 
+    conn = sqlite3.connect('Anmeldungen.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT email FROM Anmeldungen')
+    i = len(cursor.fetchall())
+    conn.close()
     if request.method == 'POST': 
         email = request.form['email']
         zeit = str(datetime.now()) 
@@ -25,6 +30,7 @@ def Anmeldung():
             conn.close()
             i += 1
             return i
+    return i  
            
 
 """Schnittstelle für das Frontend""" 
