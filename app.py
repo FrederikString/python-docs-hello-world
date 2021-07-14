@@ -58,4 +58,4 @@ def AlleAnmeldungen():
     rows = cursor.fetchall()
     return str(rows) 
 
-app.run()
+
