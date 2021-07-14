@@ -29,7 +29,7 @@ def Anmeldung():
 
 """Schnittstelle für das Frontend""" 
 
-@app.route("/Anmeldung", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def Frontend(): 
     i = Anmeldung() 
     return '''
@@ -41,7 +41,7 @@ def Frontend():
      <p>Wenn Sie Interesse an unserem Produkt haben und mit uns in Kontakt treten wollen,<br>
        können Sie sich hier anmelden, indem Sie ihre eMail-Adresse hinterlassen. </p> 
        <p> Es haben sich bisher ''' + str(i) + ''' Personen bei uns angemeldet. </p> <br>
-        <form action = "http://127.0.0.1:5000/Anmeldung", method = "POST">
+        <form action = "https://anmeldung.azurewebsites.net", method = "POST">
         <label for="email">eMail-Adresse:</label>
         <input type="text" name="email"><br><br>
         <input type="submit" value="Anmelden">
