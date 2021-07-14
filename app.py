@@ -5,8 +5,33 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET'])
+"""Anmeldung() speichert die eMail-Adressen mit einem Zeitstempel in der DB, falls
+   diese nicht schon vorhanden sind, und gibt die Anzahl der DB-Einträge zurück"""
+
+def Anmeldung(): 
+    if request.method == 'POST': 
+        email = request.form['email']
+        zeit = str(datetime.now()) 
+        conn = sqlite3.connect('Anmeldungen.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT email FROM Anmeldungen')
+        rows = cursor.fetchall()
+        i = len(rows)
+        if any(email in s for s in rows):
+            return i
+        else: 
+            cursor.execute('INSERT INTO Anmeldungen (email, Zeit) VALUES (?,?)', (email, zeit))
+            conn.commit() 
+            conn.close()
+            i += 1
+            return i
+           
+
+"""Schnittstelle für das Frontend""" 
+
+@app.route("/Anmeldung", methods=['GET', 'POST'])
 def Frontend(): 
+    i = Anmeldung() 
     return '''
 <html>
     <body>
@@ -15,7 +40,7 @@ def Frontend():
      <h1>Anmeldung</h1>
      <p>Wenn Sie Interesse an unserem Produkt haben und mit uns in Kontakt treten wollen,<br>
        können Sie sich hier anmelden, indem Sie ihre eMail-Adresse hinterlassen. </p> 
-       <p> Es haben sich bisher z Personen bei uns angemeldet. </p> <br>
+       <p> Es haben sich bisher ''' + str(i) + ''' Personen bei uns angemeldet. </p> <br>
         <form action = "http://127.0.0.1:5000/Anmeldung", method = "POST">
         <label for="email">eMail-Adresse:</label>
         <input type="text" name="email"><br><br>
